@@ -7,6 +7,24 @@ export default function formatNumber(number, option) {
   //
   // * Please implement the function and pass all the tests in format_number_spec.js.
   // * Please do NOT modify the signature of the function.
+  var str = number+'';
+  var arr = str.split('.');
+  var result;
+  if(arr.length == 1){
+    result = number+'.00';
+  }else{
+    var str_length = arr[1].length;
+    if(str_length < 3){
+      result = number + '0'.repeat(2-str_length);
+    }else{
+      var temp_str = arr[1].substr(0,2);
+      var sub_num = arr[1].charAt(2)>4? parseInt(temp_str)+1 : temp_str;
+      result = arr[0] + '.' + sub_num;
+    }
+  }
+  if(option)
+  return '$ '+ result;
+  else
+  return result;
 
-  throw new Error('Please delete this line and implement the function');
 }
